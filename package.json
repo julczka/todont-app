@@ -15,6 +15,10 @@
     "start": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds\""
   },
   "dependencies": {
+    "@umbraco-ui/uui-box": "^0.0.8",
+    "@umbraco-ui/uui-button": "^0.1.4",
+    "@umbraco-ui/uui-input": "^0.0.13",
+    "@umbraco-ui/uui-table": "^0.0.13",
     "lit": "^2.0.2"
   },
   "devDependencies": {
