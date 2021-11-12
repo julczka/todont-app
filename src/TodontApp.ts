@@ -64,7 +64,6 @@ export class TodontApp extends LitElement {
 
     this.todonts = [...this.todonts, this.addToDontInput.value];
     this.addToDontInput.value = '';
-    console.log(this.todonts);
   }
 
   removeToDont(i: number) {
@@ -72,6 +71,33 @@ export class TodontApp extends LitElement {
       todont => this.todonts.indexOf(todont) !== i
     );
     this.todonts = [...removedTodonts];
+  }
+
+  toDontsTemplate() {
+    return html`<uui-box>
+      <uui-table slot="main" id="todont-container">
+        <uui-table-column></uui-table-column>
+        <uui-table-column id="action-column"></uui-table-column>
+        <uui-table-head
+          ><uui-table-head-cell>Remember not to...</uui-table-head-cell
+          ><uui-table-head-cell>Action</uui-table-head-cell></uui-table-head
+        >
+        ${this.todonts.map(
+          (todont, index) =>
+            html`<uui-table-row
+              ><uui-table-cell>${todont}</uui-table-cell
+              ><uui-table-cell
+                ><uui-button
+                  look="danger"
+                  label="Remove to-don't"
+                  @click=${() => this.removeToDont(index)}
+                  >remove</uui-button
+                ></uui-table-cell
+              ></uui-table-row
+            >`
+        )}
+      </uui-table>
+    </uui-box>`;
   }
 
   render() {
@@ -85,41 +111,21 @@ export class TodontApp extends LitElement {
             if (e.key === 'Enter') this.addToDont();
           }}
         >
-          <uui-input id="add-todont-input" hide-label></uui-input>
+          <uui-input
+            id="add-todont-input"
+            hide-label
+            placeholder="type in what you will never ever do..."
+          ></uui-input>
           <uui-button
             label="Add to don't"
             look="positive"
             id="add-todont-button"
             @click=${this.addToDont}
-            >Add todont</uui-button
+            >Add to-don't</uui-button
           >
         </div></uui-box
       >
-
-      <uui-box>
-        <uui-table slot="main" id="todont-container">
-          <uui-table-column></uui-table-column>
-          <uui-table-column id="action-column"></uui-table-column>
-          <uui-table-head
-            ><uui-table-head-cell>To-don't</uui-table-head-cell
-            ><uui-table-head-cell>Action</uui-table-head-cell></uui-table-head
-          >
-          ${this.todonts.map(
-            (todont, index) =>
-              html`<uui-table-row
-                ><uui-table-cell>${todont}</uui-table-cell
-                ><uui-table-cell
-                  ><uui-button
-                    look="danger"
-                    label="Remove to don't"
-                    @click=${() => this.removeToDont(index)}
-                    >remove</uui-button
-                  ></uui-table-cell
-                ></uui-table-row
-              >`
-          )}
-        </uui-table>
-      </uui-box>
+      ${this.todonts.length > 0 ? this.toDontsTemplate() : ''}
     `;
   }
 }
