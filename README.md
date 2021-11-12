@@ -1,3 +1,6 @@
+#To-Don't app
+
+A small, simple app showcasing the use of some of [Umbraco's UI Library](https://github.com/umbraco/Umbraco.UI) components and [Lit](https://lit.dev/). 
 
 ## Scripts
 
@@ -6,9 +9,3 @@
 - `build` builds your app and outputs it in your `dist` directory
 - `test` runs your test suite with Web Test Runner
 - `lint` runs the linter for your project
-
-## Tooling configs
-
-For most of the tools, the configuration is in the `package.json` to reduce the amount of files in your project.
-
-If you customize the configuration a lot, you can consider moving them to individual files.
